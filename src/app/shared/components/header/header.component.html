@@ -1,0 +1,11 @@
+<header>
+  <nav>
+    <ul *ngIf="!is_user">
+      <li><a [routerLink]="['/dashboard']" routerLinkActive="router-link-active" >Dashboard</a></li>
+      <li><a [routerLink]="['/publication']" routerLinkActive="router-link-active" >Pulicaciones</a></li>
+    </ul>
+    <div class="mx-3" >
+      <button class="btn btn-danger" (click)="logout()">Cerrar Session</button>
+    </div>
+  </nav>
+</header>

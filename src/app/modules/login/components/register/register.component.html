@@ -1,0 +1,79 @@
+<div class="container my-5 m-auto">
+  <div class="row" *ngIf="view_tab === 'user' ">
+      <h3 class="text-primary text-center">Registro inicial de usuario</h3>
+      <form [formGroup]="form_register_user" action="" class="form-row row">
+        <div class="col-12 col-lg-3">
+          <label for="">Email</label>
+        <input type="email" class="form-control my-3" placeholder="Ingrese su correo eléctronico" formControlName="email">
+        </div>
+        <div class="col-12 col-lg-3">
+          <label for="">Password</label>
+          <input type="password" class="form-control my-3" placeholder="Ingrese su contraseña" formControlName="password">
+        </div>
+        <div class="col-12 col-lg-3">
+          <label for="">Cédula de identidad</label>
+          <input type="text" class="form-control my-3" placeholder="Ingrese su documento" formControlName="cedula">
+        </div>
+        <div class="col-12 col-lg-3">
+          <label for="">Apellidos</label>
+          <input type="text" class="form-control my-3" placeholder="Ingrese sus apellidos" formControlName="lastnames">
+        </div>
+        <div class="col-12 col-lg-3">
+          <label for="">Nombres</label>
+          <input type="text" class="form-control my-3" placeholder="Ingrese sus nombres" formControlName="names">
+        </div>
+        <div class="col-12 col-lg-3">
+          <label for="">Municipio</label>
+          <input type="text" class="form-control my-3" placeholder="Ingrese su Municipio de residencia" formControlName="municipio">
+        </div>
+        <div class="col-12 col-lg-3">
+          <label for="">Localidad</label>
+          <input type="text" class="form-control my-3" placeholder="Ingrese su localidad" formControlName="localidad">
+        </div>
+        <div class="col-12 col-lg-3">
+          <label for="">Direccion</label>
+          <input type="text" class="form-control my-3" placeholder="Ingrese su direccion" formControlName="direccion">
+        </div>
+        <div class="col-12 col-lg-3">
+          <label for="">Telefono fijo</label>
+          <input type="text" class="form-control my-3" placeholder="Ingrese su telefono fijo" formControlName="phone_fijo">
+        </div>
+        <div class="col-12 col-lg-3">
+          <label for="">Telefono Celular</label>
+          <input type="text" class="form-control my-3" placeholder="Ingrese su telefono celular" formControlName="phone">
+        </div>
+
+        <div class="text-center my-3">
+          <button class="btn btn-primary text-center btn-lg" type="submit" (click)="registerUser()">Registrar usuario</button>
+        </div>
+      </form>
+  </div>
+  <div class="row" *ngIf="view_tab === 'admin' ">
+    <h3 class="text-primary text-center">Registro inicial de administrador</h3>
+    <form [formGroup]="form_register_admin" action="" class="form-row row">
+      <div class="col-12 col-lg-3">
+        <label for="">Email</label>
+      <input type="email" class="form-control my-3" placeholder="Ingrese su correo eléctronico" formControlName="email">
+      </div>
+      <div class="col-12 col-lg-3">
+        <label for="">Password</label>
+        <input type="password" class="form-control my-3" placeholder="Ingrese su contraseña" formControlName="password">
+      </div>
+      <div class="col-12 col-lg-3">
+        <label for="">Cédula de identidad</label>
+        <input type="text" class="form-control my-3" placeholder="Ingrese su docuemnto" formControlName="cedula">
+      </div>
+      <div class="col-12 col-lg-3">
+        <label for="">Apellidos</label>
+        <input type="text" class="form-control my-3" placeholder="Ingrese sus apellidos" formControlName="lastnames">
+      </div>
+      <div class="col-12 col-lg-3">
+        <label for="">Nombres</label>
+        <input type="text" class="form-control my-3" placeholder="Ingrese sus nombres" formControlName="names">
+      </div>
+      <div class="text-center my-3">
+        <button class="btn btn-primary text-center btn-lg" type="submit" (click)="registerUserAdmin()">Registrar administrador</button>
+      </div>
+    </form>
+</div>
+</div>

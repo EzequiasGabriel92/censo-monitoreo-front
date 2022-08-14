@@ -1,0 +1,46 @@
+<app-header [is_user]="true"></app-header>
+<div class="container m-auto">
+  <div class="row my-5" >
+    <div class="col-12 col-lg-6">
+      <h4 class="text-primary text-center">Registra tus sintomas</h4>
+      <form action="" class="row form-row form-group" [formGroup]="form_register">
+        <div class="col-12 my-3">
+          <label for="">Selecciona el virus</label>
+          <select class="form-control" name="" id="" formControlName="virus">
+            <option value="">Seleccionar</option>
+            <option value="" *ngFor="let item of item_virus" [value]="item">{{item}}</option>
+          </select>
+        </div>
+        <div class="col-12 my-3">
+          <label for="">Has sido atendido en hospital</label>
+          <select class="form-control" name="" id="" formControlName="atendido">
+            <option value="">Seleccionar</option>
+            <option value="" *ngFor="let item of items_atendido" [value]="item">{{item}}</option>
+          </select>
+
+        </div>
+        <div class="col-12 my-3">
+          <label for="">Selecciona ls sintomas</label>
+          <select class="form-control" name="" id="" formControlName="síntomas" multiple>
+            <option value="">Seleccionar</option>
+            <option value="" *ngFor="let item of items_sintomas" [value]="item">{{item}}</option>
+          </select>
+        </div>
+        <div class="col-12 my-3">
+          <label for="">Otro</label>
+          <input class="form-control" type="text" name="" id="" placeholder="" >
+        </div>
+      </form>
+      <div class="col-12 text-center">
+        <button class="btn btn-primary" (click)="update()">Actualizar Sintomas</button>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6 ">
+      <h4 class="text-primary text-center">Notificaciones y noticias </h4>
+      <div class="col-12 card card-body mb-3" *ngFor="let item of items_notification">
+        <h5> Title: {{item.title}}</h5>
+        <p>Descripción: {{item.description}}</p>
+      </div>
+    </div>
+  </div>
+</div>

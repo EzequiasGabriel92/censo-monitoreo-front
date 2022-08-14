@@ -1,0 +1,26 @@
+<div class="container my-5 m-auto">
+  <div class="row">
+    <div class="col-12">
+      <h3 class="text-primary text-center">Inicia Session</h3>
+      <form action="" class="form-row" [formGroup]="formLogin">
+        <label for="">Email</label>
+        <input type="email" class="form-control my-3" placeholder="Ingrese su correo eléctronico" formControlName="email">
+        <label for="">Password</label>
+        <input type="password" class="form-control my-3" placeholder="Ingrese su contraseña" formControlName="password">
+      </form>
+      <div class="text-center d-block my-3">
+        <button class="btn btn-primary text-center btn-lg" type="submit" [disabled]="!f.valid" (click)="saveUser()">Ingresa como Usuario</button>
+      </div>
+      <div class="text-center d-block my-3">
+        <button class="btn btn-primary text-center btn-lg" type="submit" [disabled]="!f.valid" (click)="saveUserAdmin()">Ingresa como Administrador</button>
+      </div>
+    </div>
+    <div class="col-12 my-3 text-center">
+      <a  class="link-info link text-decoration-none" [routerLink]="['/register']" routerLinkActive="router-link-active"  href="#">Registrar</a>
+    </div>
+
+    <div class="col-12 my-3 text-center">
+      <a  class="link-info link text-decoration-none" [routerLink]="['/register']" routerLinkActive="router-link-active"  href="#">Registrar administrador</a>
+    </div>
+  </div>
+</div>
