@@ -39,6 +39,7 @@ export class PublicationComponent implements OnInit {
           this.getAllNotification();
         }),
         (error => {
+          window.alert(error.message);
           console.log(error);
 
         })
@@ -56,6 +57,7 @@ export class PublicationComponent implements OnInit {
           this.items_notification = res;
         }),
         (error => {
+          window.alert(error.message);
           console.log(error);
 
         })

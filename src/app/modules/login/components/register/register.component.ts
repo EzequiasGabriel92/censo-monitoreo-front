@@ -61,6 +61,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate([''])
       },
       ((error) => {
+        window.alert(error.message);
         console.log(error);
       })
       )
@@ -82,6 +83,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate([''])
       },
       ((error) => {
+        window.alert(error.message);
         console.log(error);
       })
       )

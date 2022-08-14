@@ -48,6 +48,9 @@ export class LoginComponent implements OnInit {
   getAllUserAdmins(){
     this.requestService.get('admins').subscribe((res: any)=> {
       if(res){
+        if(res.length == 0){
+          window.alert('No existen usuarios registrados');
+        }
         res.forEach((element: any) => {
           if(element.email == this.formLogin.controls['email'].value && element.password == this.formLogin.controls['password'].value ){
             localStorage.setItem('admins', JSON.stringify(element));
@@ -59,6 +62,7 @@ export class LoginComponent implements OnInit {
       }
     },
     (error => {
+      window.alert(error.message);
       console.log(error);
     })
      )
@@ -67,6 +71,9 @@ export class LoginComponent implements OnInit {
   getAllUser(){
     this.requestService.get('users').subscribe((res: any)=> {
       if(res){
+        if(res.length == 0){
+          window.alert('No existen usuarios registrados');
+        }
         res.forEach((element: any) => {
           if(element.email == this.formLogin.controls['email'].value && element.password == this.formLogin.controls['password'].value ){
             localStorage.setItem('user', JSON.stringify(element));
@@ -79,6 +86,8 @@ export class LoginComponent implements OnInit {
     },
     (error => {
       console.log(error);
+      window.alert(error.message);
+
     })
      )
   }

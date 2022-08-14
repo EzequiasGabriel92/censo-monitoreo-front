@@ -64,6 +64,7 @@ export class UsersComponent implements OnInit {
         window.alert('Sintomas Actualizados')
       }),
       (error => {
+        window.alert(error.message);
         console.log(error);
 
       })
@@ -78,6 +79,7 @@ export class UsersComponent implements OnInit {
           this.items_notification = res;
         }),
         (error => {
+          window.alert(error.message);
           console.log(error);
 
         })
