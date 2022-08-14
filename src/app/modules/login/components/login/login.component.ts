@@ -63,10 +63,9 @@ export class LoginComponent implements OnInit {
         }
         res.forEach((element: any) => {
           if(element.email == this.formLogin.controls['email'].value && element.password == this.formLogin.controls['password'].value ){
+            this.exist = true;
             localStorage.setItem('admins', JSON.stringify(element));
             this.router.navigate(['dashboard']);
-          }else{
-            window.alert('El email o el password es equivocado')
           }
         });
         if(!this.exist){
@@ -92,6 +91,7 @@ export class LoginComponent implements OnInit {
         }
         res.forEach((element: any) => {
           if(element.email == this.formLogin.controls['email'].value && element.password == this.formLogin.controls['password'].value ){
+            this.exist = true;
             localStorage.setItem('user', JSON.stringify(element));
             this.router.navigate(['user']);
           }
