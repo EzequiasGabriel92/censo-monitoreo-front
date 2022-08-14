@@ -11,6 +11,7 @@ import { UtilsService } from 'src/app/core/services/utils/utils.service';
 })
 export class LoginComponent implements OnInit {
   formLogin!: FormGroup;
+  exist= false
 
   constructor(
     private fb: FormBuilder,
@@ -57,7 +58,7 @@ export class LoginComponent implements OnInit {
     this.requestService.get('admins').subscribe((res: any)=> {
       if(res){
         this.utilsService.stop();
-        if(res.length == 0){
+        if(res.length === 0){
           window.alert('No existen usuarios registrados');
         }
         res.forEach((element: any) => {
@@ -68,6 +69,9 @@ export class LoginComponent implements OnInit {
             window.alert('El email o el password es equivocado')
           }
         });
+        if(!this.exist){
+          window.alert('El email o el password es equivocado')
+        }
       }
     },
     (error => {
@@ -83,17 +87,18 @@ export class LoginComponent implements OnInit {
     this.requestService.get('users').subscribe((res: any)=> {
       if(res){
         this.utilsService.stop();
-        if(res.length == 0){
+        if(res.length === 0){
           window.alert('No existen usuarios registrados');
         }
         res.forEach((element: any) => {
           if(element.email == this.formLogin.controls['email'].value && element.password == this.formLogin.controls['password'].value ){
             localStorage.setItem('user', JSON.stringify(element));
             this.router.navigate(['user']);
-          }else{
-            window.alert('El email o el password es equivocado')
           }
         });
+        if(!this.exist){
+          window.alert('El email o el password es equivocado')
+        }
       }
     },
     (error => {
