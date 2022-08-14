@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
     this.utilsService.start()
     this.requestService.get('users').subscribe((res: any)=> {
       if(res){
-        this.utilsService.start();
+        this.utilsService.stop();
         if(res.length == 0){
           window.alert('No existen usuarios registrados');
         }
