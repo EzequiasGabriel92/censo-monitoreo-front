@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RequestService {
-  url_api = 'http://127.0.0.1:8000/api/';
+  url_api = environment.url_api;
   constructor(private Http: HttpClient) { }
 
   get(url: string){
