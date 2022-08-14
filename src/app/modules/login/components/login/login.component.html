@@ -16,11 +16,11 @@
       </div>
     </div>
     <div class="col-12 my-3 text-center">
-      <a  class="link-info link text-decoration-none" [routerLink]="['/register']" routerLinkActive="router-link-active"  href="#">Registrar</a>
+      <a  class="link-info link text-decoration-none"  (click)="register('user')">Registrar</a>
     </div>
 
     <div class="col-12 my-3 text-center">
-      <a  class="link-info link text-decoration-none" [routerLink]="['/register']" routerLinkActive="router-link-active"  href="#">Registrar administrador</a>
+      <a  class="link-info link text-decoration-none"  (click)="register('admin')">Registrar administrador</a>
     </div>
   </div>
 </div>

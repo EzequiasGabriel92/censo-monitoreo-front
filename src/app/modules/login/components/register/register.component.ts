@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RequestService } from 'src/app/core/services/request.service';
+import { UtilsService } from 'src/app/core/services/utils/utils.service';
 
 @Component({
   selector: 'app-register',
@@ -13,17 +14,24 @@ export class RegisterComponent implements OnInit {
   form_register_user!: FormGroup;
   form_register_admin!: FormGroup;
   view_tab = 'user';
+  register = '';
 
 
   constructor(
     private fb: FormBuilder,
     private requestService: RequestService,
-    private router : Router
+    private router : Router,
+    private utilService: UtilsService
     ) {
 
    }
 
   ngOnInit(): void {
+    this.register = localStorage.getItem('view') as string
+    if(this.register){
+      this.view_tab = this.register
+    }
+
     this.createFormUser();
     this.createFormAdmin();
   }
@@ -55,12 +63,16 @@ export class RegisterComponent implements OnInit {
 
   registerUserAdmin(){
     if(this.form_register_admin.valid){
+      this.utilService.start();
       const data = this.form_register_admin.value;
-      this.requestService.post('admins', data).subscribe((res) => {
+      this.requestService.post('admins', data).subscribe(
+        (res) => {
+        this.utilService.stop()
         window.alert('Usuario Creado');
         this.router.navigate([''])
       },
       ((error) => {
+        this.utilService.stop();
         window.alert(error.message);
         console.log(error);
       })
@@ -74,15 +86,19 @@ export class RegisterComponent implements OnInit {
   registerUser(){
 
     if(this.form_register_user.valid){
+      this.utilService.start();
       const data = this.form_register_user.value;
       data.virus = 'No aplica';
       data.atendido = 'No';
       data.síntomas = 'No';
-      this.requestService.post('users', data).subscribe((res) => {
+      this.requestService.post('users', data).subscribe(
+        (res) => {
+        this.utilService.stop();
         window.alert('Usuario Creado');
         this.router.navigate([''])
       },
       ((error) => {
+        this.utilService.stop();
         window.alert(error.message);
         console.log(error);
       })

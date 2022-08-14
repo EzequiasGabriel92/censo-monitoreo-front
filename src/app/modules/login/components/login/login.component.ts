@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RequestService } from 'src/app/core/services/request.service';
+import { UtilsService } from 'src/app/core/services/utils/utils.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private requestService: RequestService,
-    private router : Router
+    private router : Router,
+    private utilsService: UtilsService
     ) { }
 
   ngOnInit(): void {
@@ -26,6 +28,11 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     })
+  }
+
+  register(view: string){
+    localStorage.setItem('view', view);
+    this.router.navigate(['register'])
   }
 
   get f (){
@@ -46,8 +53,10 @@ export class LoginComponent implements OnInit {
   }
 
   getAllUserAdmins(){
+    this.utilsService.start();
     this.requestService.get('admins').subscribe((res: any)=> {
       if(res){
+        this.utilsService.stop();
         if(res.length == 0){
           window.alert('No existen usuarios registrados');
         }
@@ -62,6 +71,7 @@ export class LoginComponent implements OnInit {
       }
     },
     (error => {
+      this.utilsService.stop();
       window.alert(error.message);
       console.log(error);
     })
@@ -69,8 +79,10 @@ export class LoginComponent implements OnInit {
   }
 
   getAllUser(){
+    this.utilsService.start()
     this.requestService.get('users').subscribe((res: any)=> {
       if(res){
+        this.utilsService.start();
         if(res.length == 0){
           window.alert('No existen usuarios registrados');
         }
@@ -85,6 +97,7 @@ export class LoginComponent implements OnInit {
       }
     },
     (error => {
+      this.utilsService.stop();
       console.log(error);
       window.alert(error.message);
 

@@ -1,5 +1,6 @@
 import { Component, DebugElement, OnInit } from '@angular/core';
 import { RequestService } from 'src/app/core/services/request.service';
+import { UtilsService } from 'src/app/core/services/utils/utils.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,7 +28,8 @@ export class DashboardComponent implements OnInit {
   cant_users = 0;
 
   constructor(
-    private requestService: RequestService
+    private requestService: RequestService,
+    private utilsService: UtilsService
   ) { }
 
   ngOnInit(): void {
@@ -35,8 +37,10 @@ export class DashboardComponent implements OnInit {
   }
 
   getAllUsers(){
+    this.utilsService.start()
     this.requestService.get('users').subscribe(
       ((res:any) => {
+        this.utilsService.stop()
         if(res){
           this.cant_users = res.length;
           res.forEach((element: any) => {
@@ -49,6 +53,7 @@ export class DashboardComponent implements OnInit {
         }
       }),
     (error => {
+      this.utilsService.stop()
       console.log(error);
       window.alert(error.message);
     })

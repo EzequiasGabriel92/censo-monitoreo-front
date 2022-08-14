@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { RequestService } from 'src/app/core/services/request.service';
+import { UtilsService } from 'src/app/core/services/utils/utils.service';
 
 @Component({
   selector: 'app-users',
@@ -33,7 +34,8 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private requestService: RequestService
+    private requestService: RequestService,
+    private utilsService : UtilsService
     ) { }
 
   ngOnInit(): void {
@@ -57,13 +59,16 @@ export class UsersComponent implements OnInit {
 
   update(){
     if(this.form_register.valid){
+      this.utilsService.start()
     const data = this.form_register.value;
     const url = `users/${this.user.id}`;
     this.requestService.put(url, data).subscribe(
       (res => {
+        this.utilsService.stop()
         window.alert('Sintomas Actualizados')
       }),
       (error => {
+        this.utilsService.stop()
         window.alert(error.message);
         console.log(error);
 
@@ -74,11 +79,14 @@ export class UsersComponent implements OnInit {
   }
 
   getAllNotification(){
+    this.utilsService.start()
     this.requestService.get('notifications').subscribe(
         ((res: any) => {
+          this.utilsService.stop()
           this.items_notification = res;
         }),
         (error => {
+          this.utilsService.stop()
           window.alert(error.message);
           console.log(error);
 
